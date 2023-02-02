@@ -21,14 +21,24 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-const HomePage = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+const HomePage = (props) => {
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
 
-  useEffect(() => {
-    setLoadedMeetups(DUMMY_MEETUPS)
-  }, []);
+  // useEffect(() => {
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
 
-  return <MeetupList meetups={loadedMeetups} />;
+  return <MeetupList meetups={props.meetups} />;
 };
+
+// no longer useState and useEffect
+export async function getStaticProps() {
+  // fetch data from an API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+}
 
 export default HomePage;
